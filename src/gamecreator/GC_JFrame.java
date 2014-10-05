@@ -123,8 +123,6 @@ public class GC_JFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        seasonChBx = new javax.swing.JCheckBox();
-        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("NBA Game Creator");
@@ -196,21 +194,6 @@ public class GC_JFrame extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gamecreator/NBALogo.svg.png"))); // NOI18N
 
-        seasonChBx.setSelected(true);
-        seasonChBx.setText("summer time");
-        seasonChBx.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                seasonChBxStateChanged(evt);
-            }
-        });
-        seasonChBx.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seasonChBxActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Select season:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -220,29 +203,28 @@ public class GC_JFrame extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(testChBox)
-                            .addComponent(prodChBox)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(timeG1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel1))
-                                    .addComponent(seasonChBx)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(timeG3TextField)
-                                            .addComponent(timeG2TextField))
-                                        .addGap(147, 147, 147)))))
-                        .addGap(25, 25, 25))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(timeG1TextField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel1))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(timeG3TextField)
+                                        .addComponent(timeG2TextField))
+                                    .addGap(172, 172, 172))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(testChBox)
+                                .addComponent(prodChBox))
+                            .addGap(25, 25, 25)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(createBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -271,10 +253,6 @@ public class GC_JFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(timeG3TextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(seasonChBx))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(testChBox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -319,15 +297,6 @@ public class GC_JFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_timeG1TextFieldActionPerformed
 
-    private void seasonChBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seasonChBxActionPerformed
-        if(!seasonChBx.isSelected())seasonChBx.setText("winter time");
-        else seasonChBx.setText("summer time");
-    }//GEN-LAST:event_seasonChBxActionPerformed
-
-    private void seasonChBxStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_seasonChBxStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_seasonChBxStateChanged
-
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -363,10 +332,8 @@ public class GC_JFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JCheckBox prodChBox;
-    private javax.swing.JCheckBox seasonChBx;
     private javax.swing.JCheckBox testChBox;
     private javax.swing.JTextField timeG1TextField;
     private javax.swing.JTextField timeG2TextField;
@@ -393,13 +360,13 @@ private void createGame() {
         int month=dt.getMonth();
         int day=dt.getDate();
         int dayNum=dt.getDay();
-        if (dt.getMonth()>=10 || dt.getMonth()<2){
-            if(dt.getMonth()==10 && dt.getDate()<7 && dt.getDay()>dt.getDate()){
+        if (dt.getMonth()>=10 || dt.getMonth()<2){      //set winter time
+            if(dt.getMonth()==10 && dt.getDate()<7 && dayNum>dt.getDate()){
                 utcDif=4;
             }else utcDif=5;
         }
-        if (dt.getMonth()>=2 && dt.getMonth()<10){
-            if(dt.getMonth()==2 && dt.getDate()>=7 && dt.getDate()<14 && dt.getDay()>dt.getDate()-7){
+        if (dt.getMonth()>=2 && dt.getMonth()<10){   //set summer time
+            if(dt.getMonth()==2 && dt.getDate()>=7 && dt.getDate()<14 && dayNum>dt.getDate()-7){
                 utcDif=5;
             }else utcDif=4;
         }
