@@ -24,6 +24,7 @@ public class DataBase {
 
     public String getGameID(String gameID){
         String result="Err";
+        gameID=Integer.toString(Integer.parseInt(gameID) + 1);
         try{
             statement = conn.createStatement();//Готовим запрос
             while (!result.contains("0")) {
@@ -37,13 +38,13 @@ public class DataBase {
         } catch(Exception e){
             e.printStackTrace();
             throw new RuntimeException("ERROR! Can't write to Game file.");
-            //return result="Error";
+            
         }
         finally{
             try {
                 resultSets.close();
                 statement.close();
-                conn.close();
+                //conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
                 throw new RuntimeException("ERROR! Can't write to Game file.");
