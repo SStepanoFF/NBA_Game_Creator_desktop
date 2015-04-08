@@ -2,6 +2,7 @@ package gamecreator.framework;
 
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class DataBase {
     private static Connection conn;
@@ -15,10 +16,11 @@ public class DataBase {
                     "member", "1234");//Установка соединения с БД
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Can't connect to DataBase!");
         }
         catch(Exception e){
             e.printStackTrace();
-           // Loader.logWritter("ERROR! Can't connect to DB");
+            JOptionPane.showMessageDialog(null,"Can't connect to DataBase!");
         }
     }
 
@@ -37,8 +39,9 @@ public class DataBase {
             return gameID;
         } catch(Exception e){
             e.printStackTrace();
-            throw new RuntimeException("ERROR! Can't write to Game file.");
-            
+            //throw new RuntimeException("ERROR! Can't find GameID.");  
+            JOptionPane.showMessageDialog(null,"Can't find GameID!");
+            return result;
         }
         finally{
             try {
@@ -47,7 +50,7 @@ public class DataBase {
                 //conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                throw new RuntimeException("ERROR! Can't write to Game file.");
+                JOptionPane.showMessageDialog(null,"Can't close BD statement!");
             }
         }
     }
