@@ -16,11 +16,11 @@ public class DataBase {
                     "member", "1234");//Установка соединения с БД
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Can't connect to DataBase!");
+            JOptionPane.showMessageDialog (null, "Can't connect to DataBase!", "Error", JOptionPane.ERROR_MESSAGE);
         }
         catch(Exception e){
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Can't connect to DataBase!");
+            JOptionPane.showMessageDialog (null, "Can't connect to DataBase!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -39,8 +39,7 @@ public class DataBase {
             return gameID;
         } catch(Exception e){
             e.printStackTrace();
-            //throw new RuntimeException("ERROR! Can't find GameID.");  
-            JOptionPane.showMessageDialog(null,"Can't find GameID!");
+            JOptionPane.showMessageDialog (null, "Problen with finding GameID in DB!", "Error", JOptionPane.ERROR_MESSAGE); 
             return result;
         }
         finally{
@@ -50,7 +49,6 @@ public class DataBase {
                 //conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-                JOptionPane.showMessageDialog(null,"Can't close BD statement!");
             }
         }
     }

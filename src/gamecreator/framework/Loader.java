@@ -25,7 +25,7 @@ public class Loader {
             proper.load(new FileInputStream(propFile));
         } catch (IOException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Can't find property file!");
+            JOptionPane.showMessageDialog (null, "Can't find property file!", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         String value = "";
@@ -45,7 +45,7 @@ public class Loader {
             output.close();
         } catch (IOException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Property file was not updated!");
+            JOptionPane.showMessageDialog (null, "Property file was not updated!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
