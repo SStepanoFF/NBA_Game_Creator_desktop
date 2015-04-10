@@ -42,10 +42,11 @@ public class GC_JFrame extends javax.swing.JFrame {
     private FileWriter fileWriter = null;
     private DataBase dataBase=null;
     private String gameID=null;
-    private int game_nmb=0;
+    private int game_nmb=1;
     private int gameCount=1;
     private ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/gamecreator/NBALogoSmall.png"));
     private boolean dbCheck=true;
+    private Date dt = new Date();
    
     public GC_JFrame() {
         initComponents();      
@@ -373,7 +374,11 @@ public class GC_JFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 private void createGame() {         
-        gameName=takeCurrentDate("YYYMMdd")+"0001_nba_todays_schedule";
+        String game_nmbProp=Loader.loadProperty(takeCurrentDate("dd/MM/YYYY")+"_game_nmb");
+        if (game_nmbProp!=null){                     //takeCurrentDate("dd/MM/YYYY")+
+            game_nmb=Integer.parseInt(game_nmbProp)+1;
+        }    
+        gameName=takeCurrentDate("YYYMMdd")+"000"+Integer.toString(game_nmb)+"_nba_todays_schedule";
         gameFile = new File(gameName+".xml"); //System.getProperty("user.dir")+"\\Games\\"+
         writeToFile("<Msg_file LeagueID=\"00\" League=\"NBA\" Season=\"2014-15\" SeasonType=\"Regular Season\">\r\n" +
                 "  <Game Number=\"0\">\r\n" +              
@@ -385,6 +390,18 @@ private void createGame() {
     private String gameBodytext(){
         String game_time="";
         int utcDif=5;
+        //int dateInt=Integer.parseInt(takeCurrentDate("MMdd"));
+        if ((dt.getMonth()>=11 && dt.getDay()>=1) || dt.getMonth()<=3 && dt.getDay()<7){
+            if(dt.getMonth()==11 && dt.getDay()<7 && dt.getDay()<7){
+                utcDif=5;
+            }else utcDif=5;
+        }
+        else{
+//            if(dateInt<1101 && dt.getDay()<7){
+//                utcDif=5;
+//            }
+        }
+        //if (dt.getDay();) utcDif=4;
         if (dbCheck)dataBase=new DataBase();  
         gameCount=(Integer)gameCountSpinner.getValue();           
         String text="";
@@ -392,7 +409,6 @@ private void createGame() {
             if(i==0) game_time=timeG1TextField.getText();
             if(i==1) game_time=timeG2TextField.getText();
             if(i==2) game_time=timeG3TextField.getText();
-            if (seasonChBx.isSelected()) utcDif=4;
             String UTC_time=Integer.toString(Integer.parseInt(game_time.substring(0,2))+utcDif)+game_time.substring(2,5);
             if (dbCheck)gameID=dataBase.getGameID(gameID);
             if (gameID.contains("Err")){throw new RuntimeException("ERROR! Can't create Game file.");}
@@ -424,14 +440,14 @@ private void createGame() {
         }
     }
 
-    private String takeCurrentDate(String formatDate){
-        Date dt = new Date();
+    private String takeCurrentDate(String formatDate){        
         SimpleDateFormat dateFormat = new SimpleDateFormat(formatDate);
         return dateFormat.format(dt);
     }
     
     public void updateProperty() {
         Loader.updateProperty("gameID",gameID);
+        Loader.updateProperty(takeCurrentDate("dd/MM/YYYY")+"_game_nmb", Integer.toString(game_nmb));
     }
     
     private void downloadGameToSFTP(String destination) {
