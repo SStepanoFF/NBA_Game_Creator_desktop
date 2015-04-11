@@ -390,18 +390,19 @@ private void createGame() {
     private String gameBodytext(){
         String game_time="";
         int utcDif=5;
-        //int dateInt=Integer.parseInt(takeCurrentDate("MMdd"));
-        if ((dt.getMonth()>=11 && dt.getDay()>=1) || dt.getMonth()<=3 && dt.getDay()<7){
-            if(dt.getMonth()==11 && dt.getDay()<7 && dt.getDay()<7){
-                utcDif=5;
+        int month=dt.getMonth();
+        int day=dt.getDate();
+        int dayNum=dt.getDay();
+        if (dt.getMonth()>=10 || dt.getMonth()<2){
+            if(dt.getMonth()==10 && dt.getDate()<7 && dt.getDay()>dt.getDate()){
+                utcDif=4;
             }else utcDif=5;
         }
-        else{
-//            if(dateInt<1101 && dt.getDay()<7){
-//                utcDif=5;
-//            }
+        if (dt.getMonth()>=2 && dt.getMonth()<10){
+            if(dt.getMonth()==2 && dt.getDate()>=7 && dt.getDate()<14 && dt.getDay()>dt.getDate()-7){
+                utcDif=5;
+            }else utcDif=4;
         }
-        //if (dt.getDay();) utcDif=4;
         if (dbCheck)dataBase=new DataBase();  
         gameCount=(Integer)gameCountSpinner.getValue();           
         String text="";
