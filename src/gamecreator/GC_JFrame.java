@@ -46,10 +46,10 @@ public class GC_JFrame extends javax.swing.JFrame {
     private int gameCount=1;
     private ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/gamecreator/NBALogoSmall.png"));
     private boolean dbCheck=true;
-    private Date dt = new Date();
+    private Date dt = null;
    
     public GC_JFrame() {
-        initComponents();      
+        initComponents(); 
         JSpinner.NumberEditor jsEditor = (JSpinner.NumberEditor)gameCountSpinner.getEditor();
         DefaultFormatter formatter = (DefaultFormatter) jsEditor.getTextField().getFormatter();
         formatter.setAllowsInvalid(false);
@@ -77,7 +77,7 @@ public class GC_JFrame extends javax.swing.JFrame {
                 
         infoAction.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {                
-                JOptionPane.showMessageDialog (null, "GameCreator_v0.1", "Info",1, icon);
+                JOptionPane.showMessageDialog (null, "GameCreator_v0.2", "Info",1, icon);
             }
         });
         openGameAction.addActionListener(new ActionListener() {
@@ -266,6 +266,8 @@ public class GC_JFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        dt = new Date();
+        gameCount=(Integer)gameCountSpinner.getValue(); 
         gameID=Loader.loadProperty("gameID");      
         createGame();
         updateProperty();
@@ -275,7 +277,7 @@ public class GC_JFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void gameCountSpinnerComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_gameCountSpinnerComponentAdded
-        
+     
     }//GEN-LAST:event_gameCountSpinnerComponentAdded
 
     private void testChBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testChBoxActionPerformed
@@ -343,8 +345,8 @@ public class GC_JFrame extends javax.swing.JFrame {
 private void createGame() {         
         String game_nmbProp=Loader.loadProperty(takeCurrentDate("dd/MM/YYYY")+"_game_nmb");
         if (game_nmbProp!=null){                     //takeCurrentDate("dd/MM/YYYY")+
-            game_nmb=Integer.parseInt(game_nmbProp)+1;
-        }    
+            game_nmb=Integer.parseInt(game_nmbProp)+gameCount;
+        }else game_nmb=gameCount;    
         gameName=takeCurrentDate("YYYMMdd")+"000"+Integer.toString(game_nmb)+"_nba_todays_schedule";
         gameFile = new File(gameName+".xml"); //System.getProperty("user.dir")+"\\Games\\"+
         writeToFile("<Msg_file LeagueID=\"00\" League=\"NBA\" Season=\"2014-15\" SeasonType=\"Regular Season\">\r\n" +
@@ -360,18 +362,25 @@ private void createGame() {
         int month=dt.getMonth();
         int day=dt.getDate();
         int dayNum=dt.getDay();
+       // if (dayNum==0) dayNum=7;
+        int time=Integer.parseInt(takeCurrentDate("HH"));
         if (dt.getMonth()>=10 || dt.getMonth()<2){      //set winter time
-            if(dt.getMonth()==10 && dt.getDate()<7 && dayNum>dt.getDate()){
+            if(dt.getMonth()==10 && dt.getDate()<=7 && dayNum>dt.getDate()){  
                 utcDif=4;
             }else utcDif=5;
+            if(dt.getMonth()==10 && dt.getDate()<=7 && dayNum==0 && time<9){  
+                utcDif=4;
+            }
         }
         if (dt.getMonth()>=2 && dt.getMonth()<10){   //set summer time
-            if(dt.getMonth()==2 && dt.getDate()>=7 && dt.getDate()<14 && dayNum>dt.getDate()-7){
+            if(dt.getMonth()==2 && dt.getDate()<=14 && dayNum>dt.getDate()-7){ //&& dt.getDate()>=7
                 utcDif=5;
             }else utcDif=4;
+            if(dt.getMonth()==2 && dt.getDate()>7 && dt.getDate()<=14 && dayNum==0 && time<9){ 
+                utcDif=5;}
         }
         if (dbCheck)dataBase=new DataBase();  
-        gameCount=(Integer)gameCountSpinner.getValue();           
+                  
         String text="";
         for (int i=0; i<gameCount; i++){
             if(i==0) game_time=timeG1TextField.getText();

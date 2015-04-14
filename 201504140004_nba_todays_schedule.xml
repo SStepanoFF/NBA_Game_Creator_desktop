@@ -1,0 +1,16 @@
+<Msg_file LeagueID="00" League="NBA" Season="2014-15" SeasonType="Regular Season">
+  <Game Number="0">
+	<Msg_game_info>
+		<Game_info Game_id="111111192" Game_date="04/14/2015" Game_time="05:15 AM" Home_time="05:15 AM" Visitor_time="05:15 AM" Arena_name="Forbes Road Pavilion" Location="Braintree, MA" PPD_Status="I" Game_date_UTC="2015-04-14" Game_time_UTC="9:15" />
+		<Home_team Team_id="7818498118" Team_city="Braintree" Team_name="Quality" Team_abr="WA_HOME" />
+		<Visitor_team Team_id="7818498119" Team_city="" Team_name="Assurance" Team_abr="WA_AWAY" />
+		<TV_Info Home="NA_QA" Away="NA_QA2" Natnl="NA_QA3" Canadian="NA_QA4" />
+	</Msg_game_info>
+	<Msg_game_info>
+		<Game_info Game_id="111111193" Game_date="04/14/2015" Game_time="05:15 AM" Home_time="05:15 AM" Visitor_time="05:15 AM" Arena_name="Forbes Road Pavilion" Location="Braintree, MA" PPD_Status="I" Game_date_UTC="2015-04-14" Game_time_UTC="9:15" />
+		<Home_team Team_id="7818498118" Team_city="Braintree" Team_name="Quality" Team_abr="WA_HOME" />
+		<Visitor_team Team_id="7818498119" Team_city="" Team_name="Assurance" Team_abr="WA_AWAY" />
+		<TV_Info Home="NA_QA" Away="NA_QA2" Natnl="NA_QA3" Canadian="NA_QA4" />
+	</Msg_game_info>
+  </Game>
+</Msg_file>
