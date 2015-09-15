@@ -448,8 +448,8 @@ private void createGame() {
 	            session = jsch.getSession("nba", "sftp.keysurvey.com", 22);
                     
                     //configure authentication
-	            session.setConfig("nba", "Hd8kfc4xzx");
-	            session.setPassword("Hd8kfc4xzx");
+	            session.setConfig("login", "pass");
+	            session.setPassword("pass");
                     java.util.Properties config = new java.util.Properties();
                     config.put("StrictHostKeyChecking", "no");
                     session.setConfig(config);
